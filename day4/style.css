@@ -1,0 +1,141 @@
+:root {
+    --background-color: #f4f6f8;
+    --surface-color: #ffffff;
+    --text-color: #222222;
+    --border-color: #d1d5db;
+    --primary-color: #00328e;
+    --primary-hover: #024bab;
+    --muted-color: #6b7280;
+}
+
+body.dark {
+    --background-color: #111827;
+    --surface-color: #1f2937;
+    --text-color: #f3f4f6;
+    --border-color: #4b5563;
+    --primary-color: #60a5fa;
+    --primary-hover: #3b82f6;
+    --muted-color: #d1d5db;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.content {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 0.75rem;
+    resize: vertical;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font: inherit;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+#char-count,
+#word-count {
+    color: var(--muted-color);
+    margin: 0.5rem 0;
+}
+
+.warning {
+    color: orange !important;
+}
+
+.over {
+    color: red !important;
+    font-weight: bold;
+}
+
+.btn {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+button {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px 12px;
+    }
+
+    .content {
+        padding: 1.25rem;
+    }
+
+    .btn {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
