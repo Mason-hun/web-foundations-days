@@ -27,7 +27,7 @@ I would add an index on `enrolments(course_id)` because the application will fre
 ```sql
 CREATE INDEX idx_enrolments_course_id
 ON enrolments(course_id);
-
+```
 ## SQL or NoSQL?
 
 I would choose a relational SQL database for this system because the data is structured and has clear relationships between students, courses, and enrolments. SQL databases provide foreign keys, constraints, and joins that help maintain data integrity. A document database could work, but SQL is a better fit because the system depends heavily on relationships and accurate enrolment records.
