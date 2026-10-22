@@ -64,11 +64,11 @@ After reviewing your changes, stage only the files intended for the commit:
 ```bash
 git diff
 git add day8/ticketing-design.md day8/reflection.md README.md
-git commit -m "Complete Day 8 TicketHub assignment"
+git commit -m "Day 8 assignment"
 git push origin main
 ```
 
-These commands assume you are working on `main` and have reviewed any unrelated changes first. Do not stage unrelated files blindly.
+These commands assume you are working on `main` and have reviewed any unrelated changes first. Do not stage unrelated files blindly. The two required Day 8 deliverables are `day8/ticketing-design.md` and `day8/reflection.md`; the README is supporting documentation.
 
 ## Engineering approach
 
