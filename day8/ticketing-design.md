@@ -110,6 +110,19 @@ Use a relational database because orders, payments, and seat allocation need tra
 4. If available, set `status = HELD`, record the holder and expiry time, and create the associated pending order/hold records.
 5. Commit promptly. If another request already claimed the seat, return `409 Conflict`.
 
+**Illustrative atomic conditional update (SQL-style pseudocode)**
+
+```sql
+UPDATE seats
+SET status = 'HELD',
+    hold_owner_id = :user_id,
+    hold_expires_at = :expiry_time
+WHERE id = :seat_id
+  AND status = 'AVAILABLE';
+```
+
+The application must check the affected-row count inside the transaction. One affected row means the claim succeeded; zero means the seat was no longer available and the API returns `409 Conflict`. For a request containing multiple seats, claim all requested seats in one transaction and roll back the entire transaction if any claim fails, so the buyer does not receive a partial set unintentionally. Expired holds must first be transitioned safely under the same concurrency controls; the example above intentionally claims only seats currently marked `AVAILABLE`.
+
 The lock/conditional update serializes competing claims: the second request must see the committed state and cannot also claim the seat. Keep transactions short; never hold a database lock while waiting for a payment provider.
 
 ### Payment and expiry lifecycle
